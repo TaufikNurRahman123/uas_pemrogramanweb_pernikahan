@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="mx-4 mt-5">
-    <div class="alert alert-success">Email Verifikasi sudah dikirim, cek email/spam kemudian klik tombol/link untuk verifikasi!</div>
+    <div class="alert alert-success">Verifikasi Email Terkirim, cek email anda lalu klik link untuk verifikasi!</div>
     <form method="POST" action="{{ route('verification.send') }}">
       @csrf
       <button type="submit" class="btn btn-primary">Kirim Ulang</button>

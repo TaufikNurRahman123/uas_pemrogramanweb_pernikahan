@@ -8,25 +8,28 @@
   <title>Lupa Password</title>
 </head>
 <body class="bg-light m-0 p-0 overflow-hidden d-flex align-items-center justify-content-center" style="height: 100vh">
-  <div class="w-50 my-auto rounded-3 shadow bg-info px-2 py-2" style="height: 43vh">
-    <div class="rounded-3 bg-dark" style="height: 40vh">
-      <p class="fs-3 fw-medium text-light text-center pt-2" >Lupa Password</p>
+  <div class="w-50 my-auto rounded-3 shadow bg-light px-4 py-4" style="height: 43vh">
+    <div class="rounded-3 bg-white p-4" style="height: 100%;">
+      <p class="fs-3 fw-medium text-dark text-center pt-2">Lupa Password</p>
+
       <!-- Error Modal -->
       <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-body">
-          @if(session()->has('error'))
-            <div class="alert alert-danger m-0">
-                {{ session()->get('error') }}
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              @if(session()->has('error'))
+                <div class="alert alert-danger m-0">
+                  {{ session()->get('error') }}
+                </div>
+              @elseif(session()->has('status'))
+                <div class="alert alert-success m-0">
+                  {{ session()->get('status') }}
+                </div>
+              @endif
             </div>
-          @elseif(session()->has('status'))
-            <div class="alert alert-success m-0">
-                {{ session()->get('status') }}
-            </div>
-          @endif
+          </div>
         </div>
       </div>
-    </div>
 
       @if(session()->has('error') || session()->has('status'))
         <script>
@@ -36,15 +39,16 @@
           });
         </script>
       @endif
+
       <form class="pt-4" action="{{ url('lupa-password') }}" method="post">
-        @CSRF
-        <div class="row mb-3 ps-4 pe-4">
-          <label for="email" class="form-label col text-light fw-bold">Email address</label>
-          <input type="emai" class="form-control col" id="email" name="email" placeholder="Masukkan email reset password">
+        @csrf
+        <div class="mb-3">
+          <label for="email" class="form-label text-dark fw-bold">Alamat Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
         </div>
-        <div class="d-flex  justify-content-between me-3 ms-3 mt-3 align-items-center">
-          <a href="{{ url('login') }}" class="btn btn-primary d-flex px-4 fw-medium">Kembali</a>
-          <button type="submit" class="btn btn-primary d-flex px-4 fw-medium">Submit</button>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <a href="{{ url('login') }}" class="btn btn-secondary fw-medium">Kembali</a>
+          <button type="submit" class="btn btn-secondary fw-medium">Konfirmasi</button>
         </div>
       </form>
     </div>
